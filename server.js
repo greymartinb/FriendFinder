@@ -4,8 +4,6 @@ const path = require("path");
 const app = express();
 
 
-const PORT = 9001;
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
@@ -15,6 +13,6 @@ require("./app/routing/apiRoutes")(app);
 require("./app/routing/htmlRoutes")(app);
 
 
-app.listen(PORT, function() {
-  console.log("App listening on PORT: " + PORT);
+app.listen(process.env.PORT || 9001, function() {
+	process.env.PORT == undefined? console.log("App listening on Port 9001"):console.log("App listening on PORT: " + process.env.PORT);
 });
